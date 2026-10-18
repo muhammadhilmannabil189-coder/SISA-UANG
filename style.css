@@ -1,0 +1,317 @@
+
+/* =========================
+   1. PENGATURAN DASAR
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --hijau: #048865;
+    --hijau-muda: #e7f4ee;
+    --putih: #ffffff;
+    --latar: #f4f7f5;
+    --teks: #202b25;
+    --abu: #718078;
+    --garis: #e1e9e4;
+    --merah: #fe0000;
+    --emas: #e8f800;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--latar);
+    color: var(--teks);
+    line-height: 1.6;
+}
+
+/* =========================
+   2. HEADER
+========================= */
+header {
+    background-color: var(--hijau);
+    color: var(--putih);
+    padding: 25px 6%;
+}
+
+header h1 {
+    font-size: 28px;
+    margin-bottom: 4px;
+}
+
+header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* =========================
+   3. KONTEN UTAMA
+========================= */
+main {
+    width: 90%;
+    max-width: 1150px;
+    margin: 30px auto;
+}
+
+section {
+    background-color: var(--putih);
+    border: 1px solid var(--garis);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 18px;
+}
+
+/* =========================
+   4. KARTU RINGKASAN
+========================= */
+.ringkasan {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.kartu {
+    background-color: var(--putih);
+    border: 1px solid var(--garis);
+    border-radius: 14px;
+    padding: 20px;
+    min-width: 0;
+}
+
+.kartu h3 {
+    color: var(--abu);
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.kartu p {
+    color: var(--hijau);
+    font-size: 23px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+/* Warna khusus ringkasan */
+.kartu:nth-child(3) p {
+    color: var(--merah);
+}
+
+.kartu:nth-child(4) p {
+    color: var(--emas);
+}
+
+/* =========================
+   5. FORM TRANSAKSI
+========================= */
+.form-transaksi form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 18px;
+}
+
+.form-transaksi label {
+    font-size: 14px;
+    font-weight: bold;
+    align-self: end;
+}
+
+.form-transaksi input,
+.form-transaksi select {
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid var(--garis);
+    border-radius: 9px;
+    background-color: var(--putih);
+    color: var(--teks);
+    font-size: 14px;
+    outline: none;
+}
+
+.form-transaksi input:focus,
+.form-transaksi select:focus {
+    border-color: var(--hijau);
+    box-shadow: 0 0 0 3px var(--hijau-muda);
+}
+
+button {
+    border: none;
+    border-radius: 9px;
+    padding: 12px 18px;
+    background-color: var(--hijau);
+    color: var(--putih);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    opacity: 0.88;
+}
+
+.form-transaksi button {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+}
+
+/* =========================
+   6. PENCARIAN
+========================= */
+#pencarian {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--garis);
+    border-radius: 9px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    outline: none;
+}
+
+#pencarian:focus {
+    border-color: var(--hijau);
+}
+
+/* =========================
+   7. TABEL RIWAYAT
+========================= */
+.tabel-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+thead {
+    background-color: var(--hijau-muda);
+}
+
+th,
+td {
+    text-align: left;
+    padding: 13px 12px;
+    border-bottom: 1px solid var(--garis);
+    font-size: 13px;
+}
+
+th {
+    color: var(--hijau);
+    font-weight: bold;
+}
+
+tbody tr:hover {
+    background-color: #f8fbf9;
+}
+
+/* =========================
+   8. TOMBOL AKSI TABEL
+========================= */
+td button {
+    padding: 7px 10px;
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+td button:last-child {
+    background-color: #fff0ef;
+    color: var(--merah);
+}
+
+/* =========================
+   9. FOOTER
+========================= */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--abu);
+    font-size: 13px;
+}
+
+/* =========================
+   10. RESPONSIF UNTUK HP
+========================= */
+@media (max-width: 900px) {
+    .ringkasan {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    main {
+        width: 94%;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 22px 5%;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    main {
+        width: 94%;
+        margin: 18px auto;
+    }
+
+    section {
+        padding: 17px;
+        margin-bottom: 17px;
+        border-radius: 13px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .ringkasan {
+        gap: 10px;
+    }
+
+    .kartu {
+        padding: 14px;
+    }
+
+    .kartu h3 {
+        font-size: 12px;
+    }
+
+    .kartu p {
+        font-size: 19px;
+    }
+
+    .form-transaksi form {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .form-transaksi label {
+        margin-top: 5px;
+    }
+
+    .form-transaksi button {
+        grid-column: auto;
+        margin-top: 12px;
+    }
+
+    th,
+    td {
+        padding: 11px 9px;
+        font-size: 12px;
+    }
+}
