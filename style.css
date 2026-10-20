@@ -315,3 +315,70 @@ footer {
         font-size: 12px;
     }
 }
+
+/* Tombol pilihan jenis transaksi */
+.pilihan-jenis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0 18px;
+}
+
+.tombol-jenis {
+  padding: 13px 10px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  color: #374151;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+.tombol-jenis:active {
+  transform: scale(0.97);
+}
+
+.tombol-jenis.aktif-pemasukan {
+  background: #176b55;
+  color: #fff;
+  border-color: #176b55;
+  box-shadow: 0 4px 12px #176b5533;
+}
+
+.tombol-jenis.aktif-pengeluaran {
+  background: #dc3545;
+  color: #fff;
+  border-color: #dc3545;
+  box-shadow: 0 4px 12px #dc354533;
+}
+
+/* Animasi halus pada bagian form */
+.form-transaksi > * {
+  animation: munculHalus 0.25s ease;
+}
+
+@keyframes munculHalus {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tombol-jenis,
+  .form-transaksi > * {
+    animation: none;
+    transition: none;
+  }
+}

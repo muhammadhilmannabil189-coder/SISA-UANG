@@ -1,6 +1,55 @@
 
 const form = document.getElementById("form-transaksi");
 const jenisInput = document.getElementById("jenis");
+
+/* Tombol jenis transaksi tanpa dropdown */
+const pilihanJenis = document.createElement("div");
+pilihanJenis.className = "pilihan-jenis";
+
+pilihanJenis.innerHTML = `
+  <button type="button" class="tombol-jenis" data-jenis="pemasukan">
+    ＋ Pemasukan
+  </button>
+  <button type="button" class="tombol-jenis" data-jenis="pengeluaran">
+    − Pengeluaran
+  </button>
+`;
+
+jenisInput.insertAdjacentElement("afterend", pilihanJenis);
+jenisInput.style.display = "none";
+
+function perbaruiTombolJenis() {
+  pilihanJenis.querySelectorAll(".tombol-jenis").forEach((tombol) => {
+    const aktif = tombol.dataset.jenis === jenisInput.value;
+
+    tombol.classList.toggle(
+      "aktif-pemasukan",
+      aktif && jenisInput.value === "pemasukan"
+    );
+
+    tombol.classList.toggle(
+      "aktif-pengeluaran",
+      aktif && jenisInput.value === "pengeluaran"
+    );
+
+    tombol.setAttribute("aria-pressed", String(aktif));
+  });
+}
+
+pilihanJenis.addEventListener("click", (event) => {
+  const tombol = event.target.closest("[data-jenis]");
+  if (!tombol) return;
+
+  jenisInput.value = tombol.dataset.jenis;
+  jenisInput.dispatchEvent(new Event("change", { bubbles: true }));
+
+  perbaruiTombolJenis();
+});
+
+jenisInput.addEventListener("change", perbaruiTombolJenis);
+
+perbaruiTombolJenis();
+
 const jumlahInput = document.getElementById("jumlah");
 const kategoriInput = document.getElementById("kategori");
 const sumberInput = document.getElementById("sumber");
@@ -115,6 +164,7 @@ function hitungSaldo() {
 
 // Tampilkan atau sembunyikan kolom sesuai jenis transaksi
 function aturForm() {
+  perbaruiTombolJenis();
   const jenis = jenisInput.value;
   const labelKategori = document.querySelector(
     'label[for="kategori"]'
