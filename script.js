@@ -1,4 +1,3 @@
-
 const form = document.getElementById("form-transaksi");
 const jenisInput = document.getElementById("jenis");
 const pilihanJenis = document.createElement("div");

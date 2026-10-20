@@ -385,3 +385,120 @@ footer {
     padding: 12px 6px;
   }
 }
+
+/* ===== UPDATE TAMPILAN PILIHAN SIS AUANG ===== */
+
+/* Sembunyikan dropdown asli, tapi tetap dipakai JavaScript */
+#jenis,
+#kategori,
+#tujuan-pemasukan {
+    display: none !important;
+}
+
+/* Pilihan jenis transaksi */
+.pilihan-jenis,
+.pilihan-tujuan,
+.pilihan-kategori {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    margin: 8px 0 16px;
+}
+
+/* Tampilan tombol pilihan */
+.tombol-jenis,
+.tombol-tujuan,
+.tombol-kategori {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 8px;
+    border: 1.5px solid #e1e9e4;
+    border-radius: 13px;
+    background: #fff;
+    color: #34443b;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Efek saat disentuh */
+.tombol-jenis:active,
+.tombol-tujuan:active,
+.tombol-kategori:active {
+    transform: scale(0.97);
+}
+
+/* Pemasukan aktif */
+.tombol-jenis.aktif-pemasukan {
+    background: #048865;
+    border-color: #048865;
+    color: #fff;
+    box-shadow: 0 4px 12px #04886526;
+}
+
+/* Pengeluaran aktif */
+.tombol-jenis.aktif-pengeluaran {
+    background: #feeeee;
+    border-color: #fe0000;
+    color: #d90000;
+    box-shadow: 0 4px 12px #fe00001a;
+}
+
+/* Pilihan saldo dan kategori aktif */
+.tombol-tujuan.aktif,
+.tombol-kategori.aktif {
+    background: #e7f4ee;
+    border-color: #048865;
+    color: #048865;
+    box-shadow: 0 3px 10px #04886518;
+}
+
+/* Form lebih rapi */
+.form-transaksi input,
+.form-transaksi select {
+    border-radius: 12px;
+    min-height: 46px;
+}
+
+.form-transaksi input:focus {
+    border-color: #048865;
+    box-shadow: 0 0 0 3px #04886518;
+}
+
+/* Tombol simpan */
+.form-transaksi button[type="submit"] {
+    min-height: 48px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px #04886520;
+}
+
+/* Tampilan HP */
+@media (max-width: 600px) {
+    .pilihan-jenis,
+    .pilihan-tujuan,
+    .pilihan-kategori {
+        gap: 8px;
+    }
+
+    .tombol-jenis,
+    .tombol-tujuan,
+    .tombol-kategori {
+        min-height: 46px;
+        padding: 10px 5px;
+        font-size: 13px;
+    }
+}
+
+/* Hormati pengaturan pengurangan animasi */
+@media (prefers-reduced-motion: reduce) {
+    .tombol-jenis,
+    .tombol-tujuan,
+    .tombol-kategori {
+        transition: none;
+    }
+}
