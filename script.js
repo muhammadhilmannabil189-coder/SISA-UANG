@@ -1,8 +1,6 @@
 
 const form = document.getElementById("form-transaksi");
 const jenisInput = document.getElementById("jenis");
-
-/* Tombol jenis transaksi tanpa dropdown */
 const pilihanJenis = document.createElement("div");
 pilihanJenis.className = "pilihan-jenis";
 
@@ -58,7 +56,7 @@ const daftarTransaksi = document.getElementById("daftar-transaksi");
 const pencarianInput = document.getElementById("pencarian");
 
 
-/* Format nominal otomatis dengan pemisah ribuan */
+
 jumlahInput.type = "text";
 jumlahInput.inputMode = "numeric";
 jumlahInput.placeholder = "Contoh: 100.000";
@@ -87,7 +85,6 @@ let transaksi = JSON.parse(
 
 let idEdit = null;
 
-// Tambahkan pilihan tujuan pemasukan secara otomatis
 const labelSumber = document.querySelector('label[for="sumber"]');
 
 const tujuanWrapper = document.createElement("div");
@@ -102,10 +99,10 @@ tujuanWrapper.innerHTML = `
 form.insertBefore(tujuanWrapper, sumberInput);
 const tujuanInput = document.getElementById("tujuan-pemasukan");
 
-// Atur tanggal hari ini secara otomatis
+
 tanggalInput.value = new Date().toLocaleDateString("en-CA");
 
-// Simpan data ke browser
+
 function simpanData() {
   localStorage.setItem(
     "sisauang-transaksi",
@@ -113,7 +110,7 @@ function simpanData() {
   );
 }
 
-// Hitung semua saldo berdasarkan riwayat transaksi
+
 function hitungSaldo() {
   let saldoTersedia = 0;
   let saldoPlatform = 0;
@@ -162,7 +159,7 @@ function hitungSaldo() {
     formatRupiah(saldoPlatform);
 }
 
-// Tampilkan atau sembunyikan kolom sesuai jenis transaksi
+
 function aturForm() {
   perbaruiTombolJenis();
   const jenis = jenisInput.value;
@@ -196,7 +193,7 @@ function aturForm() {
 
 jenisInput.addEventListener("change", aturForm);
 
-// Buat teks transaksi lebih aman saat ditampilkan
+
 function aman(teks) {
   return String(teks ?? "").replace(/[&<>"']/g, (karakter) => ({
     "&": "&amp;",
@@ -207,7 +204,7 @@ function aman(teks) {
   })[karakter]);
 }
 
-// Tampilkan riwayat transaksi
+
 function tampilkanTransaksi() {
   const kataKunci = (pencarianInput?.value || "").toLowerCase();
 
@@ -269,7 +266,7 @@ function tampilkanTransaksi() {
   }).join("");
 }
 
-// Tambah transaksi atau simpan hasil edit
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -301,7 +298,7 @@ form.addEventListener("submit", (event) => {
       : ""
   };
 
-  // Cek saldo platform sebelum pencairan
+
   if (jenis === "tarik") {
     const saldoPlatformSekarang = transaksi.reduce((saldo, item) => {
       if (item.id === idEdit) return saldo;
@@ -343,7 +340,7 @@ form.addEventListener("submit", (event) => {
   aturForm();
 });
 
-// Tombol edit dan hapus pada riwayat
+
 daftarTransaksi.addEventListener("click", (event) => {
   const tombolEdit = event.target.closest("[data-edit]");
   const tombolHapus = event.target.closest("[data-hapus]");
@@ -391,7 +388,7 @@ if (pencarianInput) {
   pencarianInput.addEventListener("input", tampilkanTransaksi);
 }
 
-// Jalankan saat halaman pertama kali dibuka
+
 aturForm();
 hitungSaldo();
 tampilkanTransaksi();

@@ -1,7 +1,3 @@
-
-/* =========================
-   1. PENGATURAN DASAR
-========================= */
 * {
     margin: 0;
     padding: 0;
@@ -27,9 +23,6 @@ body {
     line-height: 1.6;
 }
 
-/* =========================
-   2. HEADER
-========================= */
 header {
     background-color: var(--hijau);
     color: var(--putih);
@@ -46,9 +39,7 @@ header p {
     opacity: 0.9;
 }
 
-/* =========================
-   3. KONTEN UTAMA
-========================= */
+
 main {
     width: 90%;
     max-width: 1150px;
@@ -68,9 +59,6 @@ h2 {
     margin-bottom: 18px;
 }
 
-/* =========================
-   4. KARTU RINGKASAN
-========================= */
 .ringkasan {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -102,7 +90,6 @@ h2 {
     overflow-wrap: anywhere;
 }
 
-/* Warna khusus ringkasan */
 .kartu:nth-child(3) p {
     color: var(--merah);
 }
@@ -111,9 +98,6 @@ h2 {
     color: var(--emas);
 }
 
-/* =========================
-   5. FORM TRANSAKSI
-========================= */
 .form-transaksi form {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -166,9 +150,6 @@ button:hover {
     margin-top: 8px;
 }
 
-/* =========================
-   6. PENCARIAN
-========================= */
 #pencarian {
     width: 100%;
     padding: 12px;
@@ -183,9 +164,6 @@ button:hover {
     border-color: var(--hijau);
 }
 
-/* =========================
-   7. TABEL RIWAYAT
-========================= */
 .tabel-container {
     width: 100%;
     overflow-x: auto;
@@ -218,9 +196,6 @@ tbody tr:hover {
     background-color: #f8fbf9;
 }
 
-/* =========================
-   8. TOMBOL AKSI TABEL
-========================= */
 td button {
     padding: 7px 10px;
     font-size: 12px;
@@ -232,9 +207,6 @@ td button:last-child {
     color: var(--merah);
 }
 
-/* =========================
-   9. FOOTER
-========================= */
 footer {
     text-align: center;
     padding: 20px;
@@ -242,9 +214,6 @@ footer {
     font-size: 13px;
 }
 
-/* =========================
-   10. RESPONSIF UNTUK HP
-========================= */
 @media (max-width: 900px) {
     .ringkasan {
         grid-template-columns: repeat(2, 1fr);
@@ -316,7 +285,6 @@ footer {
     }
 }
 
-/* Tombol pilihan jenis transaksi */
 .pilihan-jenis {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -359,7 +327,6 @@ footer {
   box-shadow: 0 4px 12px #dc354533;
 }
 
-/* Animasi halus pada bagian form */
 .form-transaksi > * {
   animation: munculHalus 0.25s ease;
 }
@@ -384,4 +351,37 @@ footer {
 }
 #jenis {
   display: none !important;
+}
+
+#jenis {
+  display: none !important;
+}
+
+.pilihan-jenis {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  gap: 10px;
+  margin: 12px 0 18px;
+}
+
+.pilihan-jenis .tombol-jenis {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+@media (max-width: 768px) {
+  .pilihan-jenis {
+    position: static;
+    transform: none;
+  }
+
+  .pilihan-jenis .tombol-jenis {
+    font-size: 14px;
+    padding: 12px 6px;
+  }
 }
