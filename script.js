@@ -8,6 +8,23 @@ const tanggalInput = document.getElementById("tanggal");
 const daftarTransaksi = document.getElementById("daftar-transaksi");
 const pencarianInput = document.getElementById("pencarian");
 
+
+/* Format nominal otomatis dengan pemisah ribuan */
+jumlahInput.type = "text";
+jumlahInput.inputMode = "numeric";
+jumlahInput.placeholder = "Contoh: 100.000";
+
+jumlahInput.addEventListener("input", function () {
+  let angka = this.value.replace(/\D/g, "");
+
+  if (angka) {
+    this.value = Number(angka).toLocaleString("id-ID");
+  } else {
+    this.value = "";
+  }
+});
+
+
 const formatRupiah = (angka) =>
   new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -207,7 +224,7 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const jenis = jenisInput.value;
-  const jumlah = Number(jumlahInput.value);
+  const jumlah = Number(jumlahInput.value.replace(/\./g, ""));
   const tanggal = tanggalInput.value;
 
   if (!Number.isFinite(jumlah) || jumlah <= 0) {
