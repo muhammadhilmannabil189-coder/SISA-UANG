@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SisaUang — Keuangan Pribadi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="top">
+    <div class="logo">MHN</div>
+
+    <div>
+      <h1>Sisa Uang Mahasigma</h1>
+      <p>Catat uangmu wahai mahasigma.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="intro">
+      <div>
+        <small>KEUANGAN PRIBADI</small>
+        <h2>Ringkasan keuangan</h2>
+        <p>Pantau pemasukanmu biar ga boros.</p>
+      </div>
+
+      <span id="hari-ini" class="today"></span>
+    </section>
+
+    <!-- RINGKASAN SALDO -->
+    <section class="summary">
+      <article class="saldo">
+        <span>Saldo tersedia</span>
+        <strong id="saldo">Rp0</strong>
+        <small>Uang yang siap digunakan</small>
+      </article>
+
+      <article>
+        <span>Total pemasukan</span>
+        <strong id="pemasukan">Rp0</strong>
+        <small>Semua pemasukan tercatat</small>
+      </article>
+
+      <article>
+        <span>Pengeluaran</span>
+        <strong id="pengeluaran">Rp0</strong>
+        <small>Bulan berjalan</small>
+      </article>
+
+      <article>
+        <span>Saldo Platform/Bank</span>
+        <strong id="saldo-platform">Rp0</strong>
+        <small>Belum dicairkan</small>
+      </article>
+    </section>
+
+    <!-- REKAP PENGELUARAN DARI JAVASCRIPT -->
+    <div id="rekap-container"></div>
+
+    <!-- FORM TRANSAKSI -->
+    <section class="panel">
+      <div class="heading">
+        <div>
+          <small>CATATAN KEUANGAN</small>
+          <h2 id="judul-form">Tambah transaksi</h2>
+        </div>
+      </div>
+
+      <form id="form-transaksi" novalidate>
+
+        <div class="field full">
+          <label>Jenis transaksi</label>
+
+          <input type="hidden" id="jenis" value="pemasukan">
+
+          <div class="choices types" id="pilihan-jenis">
+            <button
+              type="button"
+              class="choice active income"
+              data-jenis="pemasukan"
+            >
+              ＋ Pemasukan
+            </button>
+
+            <button
+              type="button"
+              class="choice"
+              data-jenis="pengeluaran"
+            >
+              − Pengeluaran
+            </button>
+
+            <button
+              type="button"
+              class="choice"
+              data-jenis="tarik"
+            >
+              ↘ Tarik saldo
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="jumlah">Jumlah uang (Rp)</label>
+
+          <div class="money">
+            <span>Rp</span>
+
+            <input
+              id="jumlah"
+              inputmode="numeric"
+              placeholder="Contoh: 10.000"
+              autocomplete="off"
+            >
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="tanggal">Tanggal</label>
+          <input id="tanggal" type="date" required>
+        </div>
+
+        <div class="field full">
+          <label id="label-sumber" for="sumber">Keterangan</label>
+
+          <input
+            id="sumber"
+            maxlength="120"
+            placeholder="Contoh: uang mingguan"
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="field full" id="field-tujuan">
+          <label>Uang masuk ke</label>
+
+          <input
+            type="hidden"
+            id="tujuan-pemasukan"
+            value="tersedia"
+          >
+
+          <div class="choices" id="pilihan-tujuan">
+            <button
+              type="button"
+              class="choice active"
+              data-tujuan="tersedia"
+            >
+              Saldo tersedia
+            </button>
+
+            <button
+              type="button"
+              class="choice"
+              data-tujuan="platform"
+            >
+              Saldo platform
+            </button>
+          </div>
+        </div>
+
+        <div class="field full" id="field-kategori">
+          <label>Kategori pengeluaran</label>
+
+          <input
+            type="hidden"
+            id="kategori"
+            value="Lainnya"
+          >
+
+          <div class="choices categories" id="pilihan-kategori">
+            <button
+              type="button"
+              class="choice"
+              data-kategori="Uang Kuliah"
+            >
+              Uang Kuliah
+            </button>
+
+            <button
+              type="button"
+              class="choice"
+              data-kategori="Makan"
+            >
+              Makan
+            </button>
+
+            <button
+              type="button"
+              class="choice"
+              data-kategori="Transportasi"
+            >
+              Transportasi
+            </button>
+
+            <button
+              type="button"
+              class="choice"
+              data-kategori="Kebutuhan"
+            >
+              Kebutuhan
+            </button>
+
+            <button
+              type="button"
+              class="choice"
+              data-kategori="Hiburan"
+            >
+              Hiburan
+            </button>
+
+            <button
+              type="button"
+              class="choice active"
+              data-kategori="Lainnya"
+            >
+              ＋ Lainnya
+            </button>
+          </div>
+        </div>
+
+        <p
+          id="pesan-form"
+          class="message full"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <div class="actions full">
+          <button
+            class="primary"
+            id="tombol-simpan"
+            type="submit"
+          >
+            Simpan transaksi
+          </button>
+
+          <button
+            class="secondary hidden"
+            id="tombol-batal"
+            type="button"
+          >
+            Batal edit
+          </button>
+        </div>
+
+      </form>
+    </section>
+
+    <!-- RIWAYAT TRANSAKSI -->
+    <section class="panel">
+      <div class="heading">
+        <div>
+          <small>CATATAN UANG</small>
+          <h2>Riwayat transaksi</h2>
+        </div>
+
+        <span class="count" id="jumlah-transaksi">
+          0 transaksi
+        </span>
+      </div>
+
+      <div class="search">
+        <input
+          id="pencarian"
+          type="search"
+          placeholder="Cari keterangan, kategori, atau tanggal..."
+        >
+
+        <span>⌕</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Jenis</th>
+              <th>Detail</th>
+              <th>Jumlah</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+
+          <tbody id="daftar-transaksi"></tbody>
+        </table>
+      </div>
+
+      <div id="riwayat-mobile" class="mobile-history"></div>
+    </section>
+
+    <footer>
+      Data tersimpan di browser perangkat lu doang mas/mba.
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
